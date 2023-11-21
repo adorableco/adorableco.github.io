@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Adorableco's Blog - Baekjoon</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Adorableco's Blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/algorithm.html">Algorithm</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/baegjun-1920beon-su-cajgi-python.html">백준 1920번: 수 찾기 (python)</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-11-20T23:26:00+09:00">
+                Published: 월 20 11월 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/adorableco.html">adorableco</a>
+        </address>
+<p>In <a href="/category/algorithm.html">Algorithm</a>.</p>
+<p>tags: <a href="/tag/algorithm.html">Algorithm</a> <a href="/tag/python.html">Python</a> <a href="/tag/baekjoon.html">Baekjoon</a> </p>
+</footer><!-- /.post-info --><h2>1920번: 수찾기</h2>
+<ul>
+<li>정렬된 list 에서 이진탐색을 이용함</li>
+<li><strong>bisect_left(list, num)</strong>
+  <br/>
+  -&gt; list 내에서 num 이 들어갈 수 있는 가장 왼쪽의 index를 반환</li>
+<li><strong>bisect_right(list, num)</strong> <br/>
+  -&gt; list 내에서 num 이 들어갈 수 있는 가장 오른쪽의 index를 반환 <br/><br/>
+  <strong>ex)</strong> <code>[1,2,2,4,5]</code> 리스트에서 <code>2</code>라는 숫자가 들어갈 수 있는 가장 왼쪽 index는 <code>1</code>, 가장 오른쪽 index는 <code>3</code><br/><br/></li>
+<li>num이 list에 존재한다면 <em>삽입할 같은 숫자의 num은 list에 존재하는 num의 앞뒤로 모두 들어갈 수 있을 것이므로</em> <code>bisect_left(list,num)-bisect_right(list,num)</code> 은 <code>1</code> 이상일 것</li>
+<li>반대로 num이 list에 존재하지 않는다면 <em>어느 숫자들 사이에 한군데만 들어갈 수 있으므로</em> <code>bisect_left(list,num)-bisect_right(list,num)</code> 은 0일 것</li>
+</ul>
+<hr>
+<h3>참고사항</h3>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+</code></pre></div>
+
+<p>이런 식으로 list내에서 num 을 찾으려고 하면 시간초과가 뜸.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
