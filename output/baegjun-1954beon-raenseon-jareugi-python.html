@@ -2,8 +2,8 @@
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
-	<title>백준 1920번: 수 찾기 (python) — Adorableco's Blog</title>
-	<meta name="description" content="Title: 백준 1920번: 수 찾기 (python); Date: 2023-11-20; Author: adorableco">
+	<title>백준 1954번: 랜선 자르기 (python) — Adorableco's Blog</title>
+	<meta name="description" content="Title: 백준 1954번: 랜선 자르기 (python); Date: 2023-11-23; Author: adorableco">
 	<meta name="author" content="adorableco">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,11 +26,11 @@
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">백준 1920번: 수 찾기 (python)</h1>
+		<h1 itemprop="name headline" class="article-title">백준 1954번: 랜선 자르기 (python)</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">adorableco</h4>
 		</span>
-		<time datetime="2023-11-20T23:26:00+09:00" itemprop="datePublished">월 20 11월 2023</time>
+		<time datetime="2023-11-23T23:14:00+09:00" itemprop="datePublished">목 23 11월 2023</time>
 	</div>
 	<div>
 		Category:
@@ -51,24 +51,44 @@
 			<a href="/tag/baekjoon.html" rel="tag">Baekjoon</a>
 		</span>
 	</div>
-	<div itemprop="articleBody" class="article-body"><h2>1920번: 수찾기</h2>
+	<div itemprop="articleBody" class="article-body"><h2>1654번: 랜선 자르기 (python)</h2>
+<p>최소길이 1에서부터 최대길이 <code>max(array)+1</code> 사이에서 가장 적절한 길이를 찾으면 된다.</p>
+<p>✅ 최대 길이가 <code>max(array)</code> 가 아닌 <code>max(array)+1</code>인 이유:
+<br/></p>
 <ul>
-<li>정렬된 list 에서 이진탐색을 이용함</li>
-<li><strong>bisect_left(list, num)</strong>
-  <br/>
-  -&gt; list 내에서 num 이 들어갈 수 있는 가장 왼쪽의 index를 반환</li>
-<li><strong>bisect_right(list, num)</strong> <br/>
-  -&gt; list 내에서 num 이 들어갈 수 있는 가장 오른쪽의 index를 반환 <br/><br/>
-  <strong>ex)</strong> <code>[1,2,2,4,5]</code> 리스트에서 <code>2</code>라는 숫자가 들어갈 수 있는 가장 왼쪽 index는 <code>1</code>, 가장 오른쪽 index는 <code>3</code><br/><br/></li>
-<li>num이 list에 존재한다면 <em>삽입할 같은 숫자의 num은 list에 존재하는 num의 앞뒤로 모두 들어갈 수 있을 것이므로</em> <code>bisect_left(list,num)-bisect_right(list,num)</code> 은 <code>1</code> 이상일 것</li>
-<li>반대로 num이 list에 존재하지 않는다면 <em>어느 숫자들 사이에 한군데만 들어갈 수 있으므로</em> <code>bisect_left(list,num)-bisect_right(list,num)</code> 은 0일 것</li>
+<li>최대 길이를 max(array)로 설정하면</li>
 </ul>
-<hr>
-<h3>참고사항</h3>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="mi">4</span> <span class="mi">4</span>
+<span class="mi">800</span>
+<span class="mi">800</span>
+<span class="mi">800</span>
+<span class="mi">800</span>
 </code></pre></div>
 
-<p>이런 식으로 list내에서 num 을 찾으려고 하면 시간초과가 뜸.</p></div>
+<p>과 같이 <strong>k = n</strong> 이고 <strong>k</strong> 개의 숫자가 모두 같은 경우에는 <code>800</code> 이 최대 길이가 돼야 하는데 <code>799</code> 와 같이 근접할 뿐 800까지 도달하지 못하게 된다.</p>
+<ul>
+<li>이진탐색법을 이용하기 위해서 최소길이와 최대길이 정중앙 값으로 진행하며, 만들 수 있는 총 랜선의 개수가 필요한 랜선의 개수보다</li>
+<li><strong>작을 경우</strong> 에는 시작 길이부터 중앙 길이 사이에서 반복, <strong>클 경우</strong> 에는 중앙 길이에서부터 마지막 길이(최대 길이) 사이에서 반복한다.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">center</span>
+</code></pre></div>
+
+<h4>result 변수에 각 랜선들을 center 값으로 나눈 값들을 더해 만들 수 있는 총 랜선의 개수를 구한다.</h4>
+<ul>
+<li>start 길이가 end 길이보다 크거나 작아지는 경우 반복문 직전에 answer 에 담아둔 값을 출력한다.</li>
+</ul>
+<h3>참고사항</h3>
+<ul>
+<li>
+<p>처음에 가능한 길이를 length 라는 리스트를 만들어 1부터 최댓값까지 넣어서 풀려고 했는데 (왜 이런 생각을 했는지 모르겠음)
+  <br/>
+  아무래도 최댓값이 <code>2 &lt;sup&gt;31&lt;/sup&gt; -1</code> 이다보니 <strong>메모리초과</strong> 오류가 뜬다.</p>
+</li>
+<li>
+<p>이진탐색법을 사용하지 않을 경우 <strong>시간초과</strong> 오류가 발생한다.</p>
+</li>
+</ul></div>
 	<hr>
 	<h2>Comments</h2>
 </div>
