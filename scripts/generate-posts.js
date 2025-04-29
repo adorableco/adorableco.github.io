@@ -95,7 +95,7 @@ console.log("Posts generated successfully!");
 // 추가: sitemap.xml 생성
 const sitemapFile = path.join(__dirname, "../sitemap.xml");
 
-const siteUrl = "https://adorableco.github.io/DevLog"; // 사이트 기본 URL
+const siteUrl = "https://adorableco.github.io/"; // 사이트 기본 URL
 
 const sitemapHeader = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
