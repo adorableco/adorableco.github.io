@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adorableco's DevLog | 블로그</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .markdown-content {
+            line-height: 1.8;
+        }
+        .markdown-content h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 2rem 0 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .markdown-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1.2rem;
+        }
+        .markdown-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .markdown-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.4rem;
+        }
+
+        .markdown-content p {
+            margin: 1rem 0;
+        }
+        .markdown-content pre {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .markdown-content code {
+            background-color: #f8fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: 'Source Code Pro', Courier, monospace;
+        }
+        .markdown-content blockquote {
+            border-left: 4px solid #e2e8f0;
+            padding-left: 1rem;
+            color: #64748b;
+            margin: 1rem 0;
+        }
+        .markdown-content ul, .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .markdown-content li {
+            margin: 0.5rem 0;
+            position: relative;
+        }
+        .markdown-content ul li::before {
+            content: "•";
+            color: #3b82f6;
+            position: absolute;
+            left: -1.2rem;
+        }
+        .markdown-content ol {
+            list-style-type: decimal;
+        }
+        .markdown-content ol li {
+            padding-left: 0.5rem;
+        }
+        .markdown-content a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+        .markdown-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+     <!-- 헤더 -->
+     <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html#" class="text-2xl font-bold gradient-text">adorableco's DevLog</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html#home" class="text-gray-800 hover:text-blue-500 transition-colors">홈</a>
+                <a href="index.html#about" class="text-gray-800 hover:text-blue-500 transition-colors">소개</a>
+                <a href="index.html#portfolio" class="text-gray-800 hover:text-blue-500 transition-colors">포트폴리오</a>
+                <a href="#" class="text-gray-800 hover:text-blue-500 transition-colors">블로그</a>
+                <a href="index.html#contact" class="text-gray-800 hover:text-blue-500 transition-colors">연락처</a>
+            </nav>
+            <button id="mobileMenuButton" class="md:hidden text-gray-800">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 모바일 메뉴 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-2 px-4">
+            <a href="index.html#home" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">홈</a>
+            <a href="index.html#about" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">소개</a>
+            <a href="index.html#portfolio" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">포트폴리오</a>
+            <a href="#" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">블로그</a>
+            <a href="index.html#contact" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">연락처</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:w-1/4">
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Categories</h2>
+                    <ul class="space-y-2">
+                        <!-- Categories will be dynamically populated here -->
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Recent Posts</h2>
+                    <ul class="space-y-3" id="recent-posts">
+                        <!-- Recent posts will be loaded here -->
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Blog Content -->
+            <div class="lg:w-3/4">
+                <!-- Blog Post -->
+                <div class="bg-white rounded-lg shadow overflow-hidden mb-8 fade-in" id="blog-post">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500" id="post-date">Loading...</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-medium" id="post-category">Loading</span>
+                        </div>
+                        <h1 class="text-3xl font-bold text-gray-800 mb-4" id="post-title">Loading Blog Post...</h1>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-500"></i>
+                                </div>
+                                <span class="text-sm text-gray-600" id="post-author">Author</span>
+                            </div>
+                            <span class="text-sm text-gray-500">•</span>
+                            <span class="text-sm text-gray-500" id="read-time">5 min read</span>
+                        </div>
+                        <div class="markdown-content" id="post-content">
+                            <p>Loading blog content...</p>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-100 px-6 py-4">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-4">
+                                <button class="text-gray-500 hover:text-blue-500 transition">
+                                    <i class="far fa-heart"></i>
+                                    <span class="ml-1">Like</span>
+                                </button>
+                                <button class="text-gray-500 hover:text-blue-500 transition">
+                                    <i class="far fa-comment"></i>
+                                    <span class="ml-1">Comment</span>
+                                </button>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="text-gray-500 hover:text-blue-500 transition">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                                <button class="text-gray-500 hover:text-blue-500 transition">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Posts -->
+                <div class="bg-white rounded-lg shadow p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Related Posts</h2>
+                    <div class="grid md:grid-cols-2 gap-6" id="related-posts">
+                        <!-- Related posts will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Comments</h2>
+                    <div class="space-y-4 mb-6" id="comments">
+                        <!-- Comments will be loaded here -->
+                    </div>
+                    <div class="border-t border-gray-100 pt-4">
+                        <h3 class="text-lg font-medium mb-4">Leave a comment</h3>
+                        <form>
+                            <div class="mb-4">
+                                <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Write your comment here..."></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Post Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Tech Blog</h3>
+                    <p class="text-gray-400">Sharing knowledge about web development, programming, and technology.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition">홈</a></li>
+                        <li><a href="iindex.html#about" class="text-gray-400 hover:text-white transition">소개</a></li>
+                        <li><a href="index.html#portfolio" class="text-gray-400 hover:text-white transition">포트폴리오</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">블로그</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">연락처</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">JavaScript</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">React</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Node.js</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">CSS</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 Tech Blog. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URL에서 포스트 ID 가져오기
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            // 포스트 로드 함수
+            async function loadPost(postId) {
+                try {
+                    const response = await fetch('articles.json');
+                    const data = await response.json();
+                    const post = data.posts[postId];
+                    
+                    if (!post) {
+                        throw new Error('Post not found');
+                    }
+
+                    // Update the post details
+                    document.getElementById('post-title').textContent = post.title;
+                    document.getElementById('post-date').textContent = post.date;
+                    document.getElementById('post-category').textContent = post.tag;
+                    document.getElementById('post-author').textContent = 'Admin';
+
+                    // Fetch the actual content
+                    const contentResponse = await fetch(`articles/${post.file}`);
+                    const markdown = await contentResponse.text();
+
+                    // Remove metadata from markdown content
+                    const lines = markdown.split('\n');
+                    let contentStartIndex = 0;
+                    
+                    // Skip title and metadata
+                    for (let i = 0; i < lines.length; i++) {
+                        if (lines[i].trim() === '') {
+                            contentStartIndex = i + 1;
+                            break;
+                        }
+                    }
+                    
+                    // Skip any remaining metadata lines
+                    for (let i = contentStartIndex; i < lines.length; i++) {
+                        if (lines[i].trim() === '') {
+                            contentStartIndex = i + 1;
+                            break;
+                        }
+                        if (lines[i].startsWith('date:') || lines[i].startsWith('tag:')) {
+                            contentStartIndex = i + 1;
+                        }
+                    }
+                    
+                    const content = lines.slice(contentStartIndex).join('\n');
+                    
+                    // Calculate read time
+                    const wordCount = content.split(/\s+/).length;
+                    const readTime = Math.ceil(wordCount / 170);
+                    document.getElementById('read-time').textContent = `${readTime} min read`;
+
+                    // Convert markdown to HTML
+                    document.getElementById('post-content').innerHTML = marked.parse(content);
+
+                    // Update URL without reloading
+                    window.history.pushState({}, '', `?id=${postId}`);
+                } catch (error) {
+                    console.error('Error loading post:', error);
+                    document.getElementById('post-title').textContent = 'Post Not Found';
+                    document.getElementById('post-content').innerHTML = `
+                        <p>The requested blog post could not be found.</p>
+                    `;
+                }
+            }
+
+            // 이미지 URL 추출 함수
+            function extractFirstImageUrl(markdown) {
+                const imageRegex = /!\[.*?\]\((.*?)\)/;
+                const match = markdown.match(imageRegex);
+                return match ? match[1] : null;
+            }
+
+            // Load posts from JSON file
+            fetch('articles.json')
+                .then(response => response.json())
+                .then(data => {
+                    const posts = data.posts;
+                    
+                    // Get unique tags
+                    const uniqueTags = [...new Set(posts.map(post => post.tag))];
+                    
+                    // Update categories in sidebar
+                    const categoriesContainer = document.querySelector('.space-y-2');
+                    categoriesContainer.innerHTML = '';
+                    
+                    uniqueTags.forEach(tag => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="#" class="text-gray-600 hover:text-blue-500 transition">${tag}</a>`;
+                        categoriesContainer.appendChild(li);
+                    });
+                    
+                    const recentPostsContainer = document.getElementById('recent-posts');
+                    const relatedPostsContainer = document.getElementById('related-posts');
+                    
+                    // Display recent posts in sidebar
+                    posts.forEach((post, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <a href="?id=${index}" class="flex items-start space-x-3 group">
+                                <div class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500"></div>
+                                <div>
+                                    <h3 class="text-gray-800 group-hover:text-blue-500 transition">${post.title}</h3>
+                                    <p class="text-xs text-gray-500">${post.date}</p>
+                                </div>
+                            </a>
+                        `;
+                        recentPostsContainer.appendChild(li);
+                    });
+
+                    // Display related posts
+                    posts.forEach((post, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'bg-gray-50 rounded-lg overflow-hidden hover:shadow-md transition';
+                        
+                        // Fetch post content to find first image
+                        fetch(`articles/${post.file}`)
+                            .then(response => response.text())
+                            .then(markdown => {
+                                const imageUrl = extractFirstImageUrl(markdown);
+                                
+                                div.innerHTML = `
+                                    <a href="?id=${index}">
+                                        <div class="h-40 bg-gray-200 flex items-center justify-center overflow-hidden">
+                                            ${imageUrl 
+                                                ? `<img src="${imageUrl}" alt="Thumbnail" class="w-full h-full object-cover">`
+                                                : `<i class="fas fa-file-alt text-4xl text-gray-400"></i>`
+                                            }
+                                        </div>
+                                        <div class="p-4">
+                                            <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">${post.tag}</span>
+                                            <h3 class="text-lg font-semibold mt-2 mb-1 text-gray-800">${post.title}</h3>
+                                            <p class="text-sm text-gray-500">${post.excerpt}</p>
+                                            <div class="flex items-center mt-3 text-sm text-gray-500">
+                                                <span>${post.date}</span>
+                                                <span class="mx-2">•</span>
+                                                <span>${Math.ceil(post.wordCount/200)} min read</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                `;
+                                relatedPostsContainer.appendChild(div);
+                            })
+                            .catch(error => {
+                                console.error('Error loading post thumbnail:', error);
+                                // 기본 아이콘 표시
+                                div.innerHTML = `
+                                    <a href="?id=${index}">
+                                        <div class="h-40 bg-gray-200 flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-4xl text-gray-400"></i>
+                                        </div>
+                                        <div class="p-4">
+                                            <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">${post.tag}</span>
+                                            <h3 class="text-lg font-semibold mt-2 mb-1 text-gray-800">${post.title}</h3>
+                                            <p class="text-sm text-gray-500">${post.excerpt}</p>
+                                            <div class="flex items-center mt-3 text-sm text-gray-500">
+                                                <span>${post.date}</span>
+                                                <span class="mx-2">•</span>
+                                                <span>${Math.ceil(post.wordCount/200)} min read</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                `;
+                                relatedPostsContainer.appendChild(div);
+                            });
+                    });
+
+                    // Load initial post
+                    if (postId) {
+                        loadPost(postId);
+                    } else {
+                        loadPost(0); // Load first post by default
+                    }
+
+                    // Add click event listeners to all post links
+                    document.querySelectorAll('a[href^="?id="]').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const id = new URLSearchParams(link.getAttribute('href')).get('id');
+                            loadPost(id);
+                            // 페이지 상단으로 스크롤
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth'
+                            });
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading posts:', error);
+                });
+
+            // Load sample comments
+            const comments = [
+                {
+                    name: "Jane Doe",
+                    avatar: "JD",
+                    date: "2 days ago",
+                    content: "This is a really helpful post! I've been struggling with this concept and your explanation made it so clear."
+                },
+                {
+                    name: "John Smith",
+                    avatar: "JS",
+                    date: "1 week ago",
+                    content: "Great article! I'd love to see a follow-up post diving deeper into the advanced topics."
+                }
+            ];
+
+            const commentsContainer = document.getElementById('comments');
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'border-b border-gray-100 pb-4 last:border-0 last:pb-0';
+                div.innerHTML = `
+                    <div class="flex space-x-3">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
+                                ${comment.avatar}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h4 class="font-medium text-gray-800">${comment.name}</h4>
+                                <span class="text-xs text-gray-500">${comment.date}</span>
+                            </div>
+                            <p class="mt-1 text-gray-600">${comment.content}</p>
+                            <button class="mt-2 text-sm text-blue-500 hover:text-blue-600 transition">Reply</button>
+                        </div>
+                    </div>
+                `;
+                commentsContainer.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>

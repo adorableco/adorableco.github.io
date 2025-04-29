@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>adorableco's DevLog | 운동 파트너 매칭 플랫폼</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans" style="font-family:'PyeojinGothic', sans-serif;">
+  <main class="max-w-5xl mx-auto p-8">
+    <h1 class="text-4xl font-bold gradient-text mb-8">운동 파트너 매칭 플랫폼</h1>
+
+    <section class="mb-8 text-gray-700">
+      <p class="mb-2">
+        단절된 나노사회 속에서 단체 운동을 원하는 사용자가 손쉽게 운동 파트너를 찾을 수 있도록 돕는 플랫폼입니다.
+      </p>
+      <ul class="list-disc pl-6">
+        <li>원하는 운동을 함께할 팀원을 모집하거나, 기존 모집된 운동에 참가 가능</li>
+        <li>출석 체크 및 개인 승률·지각률 관리 기능 제공</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <div class="flex flex-wrap items-center gap-4 text-gray-700">
+        <div class="flex items-center">
+          <i class="fas fa-calendar-alt text-gray-500 mr-2"></i>
+          2023.01 - 2023.03, 2024.12 ~
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-link text-gray-500 mr-2"></i>
+          <a href="https://github.com/adorableco/Fit_Friends" target="_blank" class="text-blue-500 hover:underline">GitHub 바로가기</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">백엔드 기술 스택</h2>
+      <div class="flex flex-wrap gap-3">
+        <span class="tech-badge bg-blue-100 text-blue-800"><i class="fas fa-leaf mr-1"></i> Spring Java</span>
+        <span class="tech-badge bg-green-100 text-green-800"><i class="fas fa-database mr-1"></i> MariaDB</span>
+        <span class="tech-badge bg-yellow-100 text-yellow-800"><i class="fab fa-aws mr-1"></i> AWS</span>
+        <span class="tech-badge bg-purple-100 text-purple-800"><i class="fab fa-docker mr-1"></i> Docker</span>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">프로젝트 회고</h2>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>Jira 기반으로 프로젝트를 애자일 방식으로 관리하여 일정과 작업을 체계적으로 운영</li>
+        <li>MSA(Microservices Architecture) 전환 리팩토링을 통해 서비스 확장성과 유연성을 확보</li>
+        <li>API Gateway 및 FeignClient를 활용한 서비스 간 통신 적용</li>
+        <li>경북대 SW 교육원 및 PRIME 사업단 주관 창업아이템 경진대회 우수상 수상</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">역할</h2>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2">
+        <li>1차 개발 (모놀리식): 전체 백엔드 기능 구현</li>
+        <li>2차 개발 (MSA): Post, User 도메인 API 개발</li>
+        <li>스프린트 및 결정기록 문서 관리 담당</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">주요 레슨런</h2>
+      <div class="space-y-6 text-gray-700">
+        <div>
+          <h3 class="font-semibold mb-2 text-gray-900">🧠 AOP 기반 UserIdResolver 적용 및 개선</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Situation:</strong> 사용자 ID 추출 로직이 컨트롤러에 반복 작성되어 유지보수 어려움</li>
+            <li><strong>Task:</strong> AOP로 공통 로직을 추출하고 가독성을 높일 방안 필요</li>
+            <li><strong>Action:</strong> @UserId 어노테이션과 함께 AOP 기반 UserIdResolver 구현</li>
+            <li><strong>Result:</strong> 코드 중복 제거 및 공통 로직의 효율적 관리 가능</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2 text-gray-900">📋 Jira & Confluence 기반 프로젝트 관리 개선</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Situation:</strong> 업무 할당과 변경 사항 관리가 명확하지 않음</li>
+            <li><strong>Task:</strong> 관리 도구를 활용한 체계적인 기록 및 업무 분배 필요</li>
+            <li><strong>Action:</strong> Jira로 태스크 및 백로그 관리, Confluence로 기록화</li>
+            <li><strong>Result:</strong> 변경사항 추적 용이 및 대응력 개선</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2 text-gray-900">🤖 코드 리뷰 프로세스 자동화</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Situation:</strong> PR 리뷰 지연이 잦아 프로젝트 흐름 저해</li>
+            <li><strong>Task:</strong> 자동화로 리뷰 프로세스를 보완할 필요</li>
+            <li><strong>Action:</strong> TypeScript로 GitHub PR 분석 후 1시간 경과 시 AI 리뷰 자동 요청</li>
+            <li><strong>Result:</strong> 팀원 부담 없이 리뷰 문화 유지, 지연 문제 해결</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex justify-center mt-10">
+      <a href="../index.html" class="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg">
+        메인으로 돌아가기
+      </a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adorableco's DevLog | 기술 블로그 & 포트폴리오</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/Jihwan-Suh/PyeojinGothic/CSS/pyeojin-font.css"/>
+    <style>
+        /* 커스텀 스타일 */
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #2d3748 !important;
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-mode .bg-gray-50 {
+            background-color: #2d3748 !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #a0aec0 !important;
+        }
+        
+        .dark-mode .text-gray-500 {
+            color: #a0aec0 !important;
+        }
+        
+        .dark-mode .border-gray-200 {
+            border-color: #4a5568 !important;
+        }
+        
+        .dark-mode .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+        }
+        
+        .dark-mode .bg-blue-100 {
+            background-color: #2c5282 !important;
+        }
+        
+        .dark-mode .text-blue-600 {
+            color: #63b3ed !important;
+        }
+        
+        .dark-mode .bg-purple-100 {
+            background-color: #553c9a !important;
+        }
+        
+        .dark-mode .text-purple-500 {
+            color: #b794f4 !important;
+        }
+        
+        .dark-mode .bg-green-100 {
+            background-color: #2f855a !important;
+        }
+        
+        .dark-mode .text-green-500 {
+            color: #68d391 !important;
+        }
+        
+        .dark-mode .bg-yellow-100 {
+            background-color: #975a16 !important;
+        }
+        
+        .dark-mode .text-yellow-500 {
+            color: #f6e05e !important;
+        }
+        
+        .dark-mode .bg-red-100 {
+            background-color: #c53030 !important;
+        }
+        
+        .dark-mode .text-red-500 {
+            color: #fc8181 !important;
+        }
+        
+        .dark-mode .bg-indigo-100 {
+            background-color: #434190 !important;
+        }
+        
+        .dark-mode .text-indigo-500 {
+            color: #7f9cf5 !important;
+        }
+        
+        .dark-mode .from-blue-50 {
+            background-color: #2d3748 !important;
+        }
+        
+        .dark-mode .to-purple-50 {
+            background-color: #2d3748 !important;
+        }
+        
+        .dark-mode .bg-gradient-to-r {
+            background: linear-gradient(90deg, #2d3748, #2d3748) !important;
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: #3b82f6;
+        }
+        
+        .article-content pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+        }
+        
+        .dark-mode .article-content pre,
+        .dark-mode .article-content code {
+            background-color: #2d3748;
+            color: #f7fafc;
+        }
+        
+        /* 애니메이션 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 transition-colors duration-300" style="font-family: 'PyeojinGothic', sans-serif;">
+    <!-- 다크 모드 토글 -->
+    <button id="darkModeToggle" class="fixed bottom-6 right-6 z-50 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text">adorableco's DevLog</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-blue-500 transition-colors">홈</a>
+                <a href="#about" class="text-gray-800 hover:text-blue-500 transition-colors">소개</a>
+                <a href="#portfolio" class="text-gray-800 hover:text-blue-500 transition-colors">포트폴리오</a>
+                <a href="blog.html" class="text-gray-800 hover:text-blue-500 transition-colors">블로그</a>
+                <a href="#contact" class="text-gray-800 hover:text-blue-500 transition-colors">연락처</a>
+            </nav>
+            <button id="mobileMenuButton" class="md:hidden text-gray-800">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 모바일 메뉴 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-2 px-4">
+            <a href="#home" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">홈</a>
+            <a href="#about" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">소개</a>
+            <a href="#portfolio" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">포트폴리오</a>
+            <a href="blog.html" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">블로그</a>
+            <a href="#contact" class="block py-2 text-gray-800 hover:text-blue-500 transition-colors">연락처</a>
+        </div>
+    </header>
+
+    <!-- 메인 섹션 -->
+    <main>
+        <!-- Hero 섹션 -->
+        <section id="home" class="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fadeIn">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">안녕하세요, <span class="gradient-text">개발자</span>입니다</h1>
+                    <p class="text-xl text-gray-600 mb-8">기술 블로그와 포트폴리오를 한 곳에서 관리하세요.</p>
+                    <div class="flex space-x-4">
+                        <a href="#portfolio" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors">포트폴리오 보기</a>
+                        <a href="#blog" class="border border-blue-500 text-blue-500 hover:bg-blue-50 px-6 py-3 rounded-lg transition-colors">최신 글 보기</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-fadeIn delay-100">
+                    <img src="assets/images/devlog_main.png" 
+                         alt="개발자 픽셀 이미지" 
+                         class="rounded-xl shadow-xl w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- 소개 섹션 -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center animate-fadeIn">
+                        <div class="relative">
+                            <img src="https://avatars.githubusercontent.com/u/90397541?s=400&u=52f431a0f71e6559ba4cbec2287d6f119bd0159e&v=4" 
+                                 alt="프로필 사진" 
+                                 class="rounded-full w-48 h-48 object-cover border-4 border-blue-100 shadow-lg">
+                            <div class="absolute -bottom-3 -right-3 bg-blue-500 text-white p-3 rounded-full">
+                                <i class="fas fa-code text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 md:pl-12 animate-fadeIn delay-100">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Learning By Coding, 강한 실행력을 가진 개발자</h3>
+                        <p class="text-gray-600 mb-6">
+                            안녕하세요! 컴퓨터공학을 전공하고 있는 학생입니다 ☺️ 저는 코드 품질을 최우선 가치로 삼아 단위 테스트를 철저히 수행하고, 이를 통해 기능의 정확성과 안정성을 검증하는 백엔드 개발자입니다. 코드 작성만큼 문서화도 중요하게 여기며, 모든 개발 과정과 의사결정을 빠짐없이 기록하고 체계적으로 관리합니다. 또한, 더 나은 성능과 높은 완성도를 위해 새로운 기술을 배우고, 이를 실제 서비스에 적용하기 위해 끊임없이 도전하고 있습니다.
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 text-blue-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <span class="text-gray-700">백엔드 개발</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 text-purple-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <span class="text-gray-700">프론트엔드 개발</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-green-100 text-green-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <span class="text-gray-700">데이터베이스</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-yellow-100 text-yellow-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <span class="text-gray-700">시스템 아키텍처</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-red-100 text-red-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <span class="text-gray-700">반응형 웹</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 text-indigo-500 p-2 rounded-full mr-3">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <span class="text-gray-700">프로젝트 관리</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 기술 스택 섹션 (수정된 부분) -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">기술 스택</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-16 h-16 mb-4">
+                        <span class="font-medium">Java</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-100">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin" class="w-16 h-16 mb-4">
+                        <span class="font-medium">Kotlin</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-200">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-16 h-16 mb-4">
+                        <span class="font-medium">MySQL</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-300">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="w-16 h-16 mb-4">
+                        <span class="font-medium">Spring Boot</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-16 h-16 mb-4">
+                        <span class="font-medium">React</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-100">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-16 h-16 mb-4">
+                        <span class="font-medium">Git</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center w-32 hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-200">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira" class="w-16 h-16 mb-4">
+                        <span class="font-medium">Jira</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 포트폴리오 섹션 -->
+        <section id="portfolio" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">포트폴리오</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 프로젝트 1 -->
+                    
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow card-hover animate-fadeIn delay-100">
+                        <img src="assets/images/phote.png" 
+                             alt="포테 앱 화면" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">[Phote] 수험생을 위한 문제 텍스트 변환 및 관리 서비스</h3>
+                            <p class="text-gray-600 mb-4">SW마에스트로 연수과정 성과</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Kotlin</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Spring Boot</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">React</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">REST API</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                    <button id="portfolioBtn" class="fas fa-arrow-right">
+                                        포트폴리오 상세 보기
+                                    </button>
+                                <a href="https://github.com/swm-standard/phote-server" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fab fa-github"></i> 코드
+                                </a>
+                            </div>
+         
+                            <script>
+                                document.getElementById('portfolioBtn').addEventListener('click', function () {
+                                    window.location.href = 'portfolio/phote.html'; // 이동할 HTML 파일명
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- 프로젝트 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow card-hover animate-fadeIn">
+                        <img src="assets/images/단체 운동 매칭 플랫폼.png" 
+                             alt="대시보드 프로젝트" 
+                             class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">[Fitfriends] 단체 운동 모집 서비스</h3>
+                            <p class="text-gray-600 mb-4">Spring Boot와 MySQL을 사용한 RESTful API 서비스</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Spring Boot</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">MySQL</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">JWT</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button id="portfolio2Btn" class="fas fa-arrow-right">
+                                    포트폴리오 상세 보기
+                                </button>
+                                <a href="https://github.com/adorableco/Fit_Friends" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fab fa-github"></i> 코드
+                                </a>
+                            </div>
+                            <script>
+                                document.getElementById('portfolio2Btn').addEventListener('click', function () {
+                                    window.location.href = 'portfolio/fitfriends.html'; // 이동할 HTML 파일명
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center text-blue-500 hover:text-blue-700">
+                        더 많은 프로젝트 보기
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 블로그 섹션 -->
+        <section id="blog" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">최신 블로그 글</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recent-blog-posts">
+                    <!-- 최신 블로그 글이 여기에 동적으로 로드됩니다 -->
+                </div>
+
+                <script>
+                    // 다크 모드 토글 기능
+                    const darkModeToggle = document.getElementById('darkModeToggle');
+                    const body = document.body;
+                    
+                    // 로컬 스토리지에서 다크 모드 설정 확인
+                    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                    if (isDarkMode) {
+                        body.classList.add('dark-mode');
+                        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+
+                    darkModeToggle.addEventListener('click', () => {
+                        body.classList.toggle('dark-mode');
+                        const isDark = body.classList.contains('dark-mode');
+                        localStorage.setItem('darkMode', isDark);
+                        darkModeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                    });
+
+                    // 최신 블로그 글 로드
+                    fetch('articles.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            const posts = data.posts;
+                            const recentPostsContainer = document.getElementById('recent-blog-posts');
+                            
+                            // 1달 이내의 글 필터링
+                            const oneMonthAgo = new Date();
+                            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+                            
+                            const recentPosts = posts.filter(post => {
+                                const postDate = new Date(post.date);
+                                return postDate >= oneMonthAgo;
+                            });
+
+                            if (recentPosts.length === 0) {
+                                recentPostsContainer.innerHTML = `
+                                    <div class="col-span-full text-center text-gray-500">
+                                        최근 1달 이내의 블로그 글이 없습니다.
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            // 최신 글 표시
+                            recentPosts.forEach((post, index) => {
+                                const div = document.createElement('div');
+                                div.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow p-6';
+                                div.innerHTML = `
+                                    <a href="blog.html?id=${index}" class="block">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">${post.tag}</span>
+                                            <span class="text-sm text-gray-500">${post.date}</span>
+                                        </div>
+                                        <h3 class="text-xl font-semibold mb-2 text-gray-800 hover:text-blue-500 transition-colors">${post.title}</h3>
+                                        <p class="text-sm text-gray-500 mb-4">${post.excerpt}</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span>${Math.ceil(post.wordCount/170)} min read</span>
+                                        </div>
+                                    </a>
+                                `;
+                                recentPostsContainer.appendChild(div);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error loading recent posts:', error);
+                            document.getElementById('recent-blog-posts').innerHTML = `
+                                <div class="col-span-full text-center text-gray-500">
+                                    블로그 글을 불러오는 중 오류가 발생했습니다.
+                                </div>
+                            `;
+                        });
+                </script>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

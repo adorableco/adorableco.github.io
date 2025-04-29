@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "file": "JpaRepository%20%EB%A0%88%ED%8F%AC%EC%A7%80%ED%86%A0%EB%A6%AC%20%ED%81%B4%EB%9E%98%EC%8A%A4%EB%8A%94%20%EC%99%9C%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%BC%EA%B9%8C%3F.md",
+      "title": "JpaRepository 레포지토리 클래스는 왜 인터페이스일까?",
+      "date": "2025-01-22 16:00:00",
+      "tag": "Backend",
+      "excerpt": "인터페이스와 구현체와의 관계에 대해 공부하면서 구현체가 2개 이상인 경우에는 인터페이스를 ...더보기",
+      "wordCount": 473
+    },
+    {
+      "file": "Kappa%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.md",
+      "title": "Kappa 아키텍처",
+      "date": "2025-04-29 23:00:00",
+      "tag": "Backend",
+      "excerpt": "광고 클릭 이벤트 집계 아키텍처를 공부하는 중에 Kappa 아키텍처를 처음 알게 되었습니다...더보기",
+      "wordCount": 547
+    },
+    {
+      "file": "%EB%B0%B1%EC%A4%80%202671%20%EC%9E%A0%EC%88%98%ED%95%A8%EC%8B%9D%EB%B3%84%20DFA%EB%A1%9C%20%ED%92%80%EA%B8%B0%20(Java).md",
+      "title": "백준 2671 잠수함식별 DFA로 풀기 (Java)",
+      "date": "2025-04-17 16:00:00",
+      "tag": "Algorithm",
+      "excerpt": "알고리즘 문제 풀이는 블로그에 안올린지 꽤 오래됐지만... 재밌는 문제를 풀어서 오랜만에 ...더보기",
+      "wordCount": 601
+    }
+  ]
+}
