@@ -9,6 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @font-face {
+            font-family: 'GothicA1-Light';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/GothicA1-Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         .gradient-text {
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
@@ -18,6 +24,13 @@
         
         .markdown-content {
             line-height: 1.8;
+            font-family: 'GothicA1-Light', sans-serif;
+        }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
+            font-family: 'GothicA1-Light', sans-serif;
+        }
+        .markdown-content p, .markdown-content blockquote, .markdown-content ul, .markdown-content ol, .markdown-content li {
+            font-family: 'GothicA1-Light', sans-serif;
         }
         .markdown-content h1 {
             font-size: 2.2rem;
@@ -30,11 +43,17 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin: 1.8rem 0 1.2rem;
+            display: inline-block;
+            background: linear-gradient(180deg, transparent 60%, #f8fafc 60%);
+            color: #0c4a6e;
         }
         .markdown-content h3 {
             font-size: 1.5rem;
             font-weight: 600;
             margin: 1.5rem 0 1rem;
+            display: inline-block;
+            background: linear-gradient(180deg, transparent 60%, #f8fafc 60%);
+            color: #0c4a6e;
         }
 
         .markdown-content h4 {
@@ -70,7 +89,7 @@
             padding-left: 2rem;
         }
         .markdown-content li {
-            margin: 0.5rem 0;
+            margin: 0.2rem 0;
             position: relative;
         }
         .markdown-content ul li::before {
@@ -78,6 +97,7 @@
             color: #3b82f6;
             position: absolute;
             left: -1.2rem;
+            font-family: 'GothicA1-Light', sans-serif;
         }
         .markdown-content ol {
             list-style-type: decimal;
@@ -104,7 +124,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen" style="font-family: GothicA1-Light sans-serif;">
      <!-- 헤더 -->
      <header class="bg-white shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -262,6 +282,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 모바일 메뉴 토글 기능 추가
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
             // URL에서 포스트 ID 가져오기
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');

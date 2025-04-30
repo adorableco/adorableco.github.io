@@ -2,7 +2,7 @@
 layout: post
 title: "백준 2671 잠수함식별 DFA로 풀기 (Java)"
 tags: Algorithm
-lastmod: 2025-04-17 16:00:00
+lastmod: 2025-04-17
 sitemap:
   changefreq: daily
   priority: 0.8

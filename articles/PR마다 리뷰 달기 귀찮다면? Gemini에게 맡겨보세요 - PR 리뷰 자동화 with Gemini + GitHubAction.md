@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "PR마다 리뷰 달기 귀찮다면? Gemini에게 맡겨보세요 - PR 리뷰 자동화 with Gemini + GitHubAction"
-tags:
-lastmod: 2025-03-26 11:00:00
+tags: etc
+lastmod: 2025-03-26
 sitemap:
   changefreq: daily
   priority: 0.8

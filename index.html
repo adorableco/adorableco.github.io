@@ -7,8 +7,13 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/Jihwan-Suh/PyeojinGothic/CSS/pyeojin-font.css"/>
     <style>
+        @font-face {
+            font-family: 'GothicA1-Light';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/GothicA1-Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         /* 커스텀 스타일 */
         .gradient-text {
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
@@ -172,7 +177,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 transition-colors duration-300" style="font-family: 'PyeojinGothic', sans-serif;">
+<body class="bg-gray-50 transition-colors duration-300" style="font-family: 'GothicA1-Light', sans-serif;">
     <!-- 다크 모드 토글 -->
     <button id="darkModeToggle" class="fixed bottom-6 right-6 z-50 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors">
         <i class="fas fa-moon"></i>
@@ -241,7 +246,7 @@
                     <div class="md:w-2/3 md:pl-12 animate-fadeIn delay-100">
                         <h3 class="text-2xl font-semibold mb-4 text-gray-800">Learning By Coding, 강한 실행력을 가진 개발자</h3>
                         <p class="text-gray-600 mb-6">
-                            안녕하세요! 컴퓨터공학을 전공하고 있는 박세연입니다 ☺️ 저는 코드 품질을 최우선 가치로 삼아 단위 테스트를 철저히 수행하고, 이를 통해 기능의 정확성과 안정성을 검증하는 백엔드 개발자입니다. 코드 작성만큼 문서화도 중요하게 여기며, 모든 개발 과정과 의사결정을 빠짐없이 기록하고 체계적으로 관리합니다. 또한, 더 나은 성능과 높은 완성도를 위해 새로운 기술을 배우고, 이를 실제 서비스에 적용하기 위해 끊임없이 도전하고 있습니다.
+                            안녕하세요! 컴퓨터공학을 전공하고 있는 박세여입니다 ☺️ 저는 코드 품질을 최우선 가치로 삼아 단위 테스트를 철저히 수행하고, 이를 통해 기능의 정확성과 안정성을 검증하는 백엔드 개발자입니다. 코드 작성만큼 문서화도 중요하게 여기며, 모든 개발 과정과 의사결정을 빠짐없이 기록하고 체계적으로 관리합니다. 또한, 더 나은 성능과 높은 완성도를 위해 새로운 기술을 배우고, 이를 실제 서비스에 적용하기 위해 끊임없이 도전하고 있습니다.
                         </p>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                             <div class="flex items-center">
@@ -344,7 +349,8 @@
                                 <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">REST API</span>
                             </div>
                             <div class="flex space-x-3">
-                                    <button id="portfolioBtn" class="fas fa-arrow-right">
+                                    <button id="portfolioBtn" class="flex items-center gap-2 font-['GothicA1-Light']">
+                                        <i class="fas fa-arrow-right"></i>
                                         포트폴리오 상세 보기
                                     </button>
                                 <a href="https://github.com/swm-standard/phote-server" class="text-gray-500 hover:text-gray-700">
@@ -375,7 +381,8 @@
                                 <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">JWT</span>
                             </div>
                             <div class="flex space-x-3">
-                                <button id="portfolio2Btn" class="fas fa-arrow-right">
+                                <button id="portfolio2Btn" class="flex items-center gap-2 font-['GothicA1-Light']">
+                                    <i class="fas fa-arrow-right"></i>
                                     포트폴리오 상세 보기
                                 </button>
                                 <a href="https://github.com/adorableco/Fit_Friends" class="text-gray-500 hover:text-gray-700">

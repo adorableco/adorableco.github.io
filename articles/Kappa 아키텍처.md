@@ -2,7 +2,7 @@
 layout: post
 title: "Kappa 아키텍처"
 tags: Backend
-lastmod: 2025-04-29 23:00:00
+lastmod: 2025-04-29
 sitemap:
   changefreq: daily
   priority: 0.8
