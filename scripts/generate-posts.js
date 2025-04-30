@@ -1,3 +1,5 @@
+/** @format */
+
 const fs = require("fs");
 const path = require("path");
 
@@ -103,10 +105,7 @@ const sitemapFooter = `</urlset>`;
 const sitemapUrls = posts
   .map((post, index) => {
     // posts 배열의 각 글에서 lastmod를 가져옴
-    const lastmodDate = new Date(post.date);
-
-    // ISO 8601 포맷으로 변환
-    const lastmod = lastmodDate.toISOString();
+    const lastmod = post.date;
     return `
   <url>
     <loc>${siteUrl}/blog.html?id=${index + 1}</loc>

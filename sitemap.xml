@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://adorableco.github.io/blog.html?id=1</loc>
-    <lastmod>2025-01-22T07:00:00.000Z</lastmod>
+    <lastmod>2025-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://adorableco.github.io/blog.html?id=2</loc>
-    <lastmod>2025-04-29T14:00:00.000Z</lastmod>
+    <lastmod>2025-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://adorableco.github.io/blog.html?id=3</loc>
-    <lastmod>2025-03-26T02:00:00.000Z</lastmod>
+    <lastmod>2025-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://adorableco.github.io/blog.html?id=4</loc>
-    <lastmod>2025-04-17T07:00:00.000Z</lastmod>
+    <lastmod>2025-04-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://adorableco.github.io/blog.html?id=5</loc>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url></urlset>
