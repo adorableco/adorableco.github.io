@@ -227,20 +227,8 @@
                 <!-- Comments Section -->
                 <div class="bg-white rounded-lg shadow p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Comments</h2>
-                    <div class="space-y-4 mb-6" id="comments">
-                        <!-- Comments will be loaded here -->
-                    </div>
-                    <div class="border-t border-gray-100 pt-4">
-                        <h3 class="text-lg font-medium mb-4">Leave a comment</h3>
-                        <form>
-                            <div class="mb-4">
-                                <textarea class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Write your comment here..."></textarea>
-                            </div>
-                            <div class="flex justify-end">
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Post Comment</button>
-                            </div>
-                        </form>
-                    </div>
+                    <p class="text-gray-500 mb-4">💬 댓글 기능은 현재 준비 중입니다. 곧 업데이트될 예정이에요!</p>
+                    <!-- 향후 댓글 리스트와 작성 폼이 이 아래에 들어올 예정 -->
                 </div>
             </div>
         </div>
@@ -281,6 +269,79 @@
     </footer>
 
     <script>
+function loadCategoryPosts(tag) {
+    fetch('articles.json')
+        .then(response => response.json())
+        .then(data => {
+            const posts = data.posts
+                .map((post, index) => ({ ...post, index }))
+                .filter(post => post.tag === tag);
+
+            const blogContent = document.getElementById('blog-post');
+            const relatedContainer = document.getElementById('related-posts');
+            const title = document.getElementById('post-title');
+            const content = document.getElementById('post-content');
+
+            // 메타 정보 숨기기
+            document.getElementById('post-date').style.display = 'none';
+            document.getElementById('post-category').style.display = 'none';
+            document.getElementById('post-author').style.display = 'none';
+            document.getElementById('read-time').style.display = 'none';
+            // 아래 요소들도 숨기기
+            var markdownContentEl = document.querySelector('.markdown-content');
+            if (markdownContentEl) markdownContentEl.style.display = 'none';
+            var likeCommentEl = document.querySelector('.border-t.border-gray-100.px-6.py-4');
+            if (likeCommentEl) likeCommentEl.style.display = 'none';
+            var authorReadTimeEl = document.querySelector('.flex.items-center.space-x-4.mb-6');
+            if (authorReadTimeEl) authorReadTimeEl.style.display = 'none';
+
+            // Related Posts와 Comments 섹션 숨기기
+            const relatedPostsSection = document.querySelector('.bg-white.rounded-lg.shadow.p-6.mb-8');
+            if (relatedPostsSection) relatedPostsSection.style.display = 'none';
+
+            // 댓글 영역 전체 숨기기
+            const fullCommentsSection = document.querySelector('div.bg-white.rounded-lg.shadow.p-6:nth-of-type(3)');
+            if (fullCommentsSection) fullCommentsSection.style.display = 'none';
+
+            // 제목 설정
+            title.textContent = `"${tag}" 카테고리 글 목록`;
+
+            // 리스트 출력: post-content는 숨기고, category-list에 출력
+            let categoryList = document.getElementById('category-list');
+            if (!categoryList) {
+                categoryList = document.createElement('div');
+                categoryList.id = 'category-list';
+                content.parentNode.insertBefore(categoryList, content);
+            }
+            categoryList.innerHTML = posts.map(post => `
+                <div class="mb-8 pb-4 border-b">
+                    <a href="?id=${post.index}" class="text-2xl font-semibold text-blue-600 hover:underline post-link" data-id="${post.index}">${post.title}</a>
+                    <p class="text-gray-500 text-sm mt-1">${post.date}</p>
+                    <p class="text-gray-700 mt-2">${post.excerpt}</p>
+                </div>
+            `).join('');
+            content.style.display = 'none';
+            categoryList.style.display = '';
+
+            // 관련 포스트 비우기
+            relatedContainer.innerHTML = '';
+
+            // 클릭 이벤트 재바인딩
+            setTimeout(() => {
+                document.querySelectorAll('.post-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const id = link.getAttribute('data-id');
+                        loadPost(id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }, 0);
+        })
+        .catch(error => {
+            console.error('Error loading category posts:', error);
+        });
+}
         document.addEventListener('DOMContentLoaded', function() {
             // 모바일 메뉴 토글 기능 추가
             const mobileMenuButton = document.getElementById('mobileMenuButton');
@@ -293,6 +354,7 @@
             // URL에서 포스트 ID 가져오기
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
+            const categoryParam = urlParams.get('category');
 
             // 포스트 로드 함수
             async function loadPost(postId) {
@@ -304,6 +366,10 @@
                     if (!post) {
                         throw new Error('Post not found');
                     }
+
+                    // 카테고리 리스트 숨기기
+                    const categoryList = document.getElementById('category-list');
+                    if (categoryList) categoryList.style.display = 'none';
 
                     // Update the post details
                     document.getElementById('post-title').textContent = post.title;
@@ -347,6 +413,7 @@
 
                     // Convert markdown to HTML
                     document.getElementById('post-content').innerHTML = marked.parse(content);
+                    document.getElementById('post-content').style.display = '';
 
                     // Update URL without reloading
                     window.history.pushState({}, '', `?id=${postId}`);
@@ -381,18 +448,23 @@
                     
                     uniqueTags.forEach(tag => {
                         const li = document.createElement('li');
-                        li.innerHTML = `<a href="#" class="text-gray-600 hover:text-blue-500 transition">${tag}</a>`;
+                        li.innerHTML = `<a href="?category=${tag}" class="text-gray-600 hover:text-blue-500 transition">${tag}</a>`;
                         categoriesContainer.appendChild(li);
                     });
                     
                     const recentPostsContainer = document.getElementById('recent-posts');
                     const relatedPostsContainer = document.getElementById('related-posts');
                     
-                    // Display recent posts in sidebar
-                    posts.forEach((post, index) => {
+                    // Display recent posts in sidebar (sorted by date, latest 3~4 only)
+                    const recentPosts = posts
+                        .map((post, index) => ({ ...post, index }))
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 4);
+
+                    recentPosts.forEach(post => {
                         const li = document.createElement('li');
                         li.innerHTML = `
-                            <a href="?id=${index}" class="flex items-start space-x-3 group">
+                            <a href="?id=${post.index}" class="flex items-start space-x-3 group">
                                 <div class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500"></div>
                                 <div>
                                     <h3 class="text-gray-800 group-hover:text-blue-500 transition">${post.title}</h3>
@@ -460,7 +532,11 @@
                             });
                     });
 
-                    // Load initial post
+                    // Load initial post or category
+                    if (categoryParam) {
+                        loadCategoryPosts(categoryParam);
+                        return;
+                    }
                     if (postId) {
                         loadPost(postId);
                     } else {
@@ -478,6 +554,15 @@
                                 top: 0,
                                 behavior: 'smooth'
                             });
+                        });
+                    });
+                    // Add click event listeners to all .post-link links
+                    document.querySelectorAll('.post-link').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const id = link.getAttribute('data-id');
+                            loadPost(id);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
                         });
                     });
                 })

@@ -75,8 +75,8 @@ const posts = fs
         break;
       }
     }
-    if (excerpt.length > 50) {
-      excerpt = excerpt.substring(0, 50) + "...더보기";
+    if (excerpt.length > 70) {
+      excerpt = excerpt.substring(0, 70) + "...더보기";
     }
 
     return {

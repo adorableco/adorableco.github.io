@@ -8,7 +8,6 @@ sitemap:
   priority: 0.8
 ---
 
-
 ![](https://velog.velcdn.com/images/adorableco/post/b8f9b42e-190a-44b3-a8c0-98191ea45b1d/image.png)
 
 `Vibe Coding`의 시대가 도래했습니다...
@@ -30,8 +29,9 @@ sitemap:
 ---
 
 > 결과물은 아래 링크에서 확인하실 수 있습니다.
-> DevLog: http://127.0.0.1:5500/index.html#
+> DevLog: https://adorableco.github.io/
 > GitHub: https://github.com/adorableco/adorableco.github.io
+> 지금 읽고 계신 이 게시물도 DevLog에 올렸습니다~! ➡️ https://adorableco.github.io/blog.html?id=3
 
 ## 1. Deepsite로 원하는 틀 잡기 🖼️
 
