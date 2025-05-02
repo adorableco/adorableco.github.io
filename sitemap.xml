@@ -26,6 +26,12 @@
   </url>
   <url>
     <loc>https://adorableco.github.io/blog.html?id=5</loc>
+    <lastmod>2025-05-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://adorableco.github.io/blog.html?id=6</loc>
     <lastmod>2025-04-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
